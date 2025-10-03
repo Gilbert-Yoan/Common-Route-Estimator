@@ -9,7 +9,7 @@ if ! command -v crontab &> /dev/null; then
 
     echo "crontab is now installed. Pushing new cron job..."
     #echo new cron into cron file
-    echo "00,10,20,30,40,50 6-8,16-18 * * 1-5 python3 $( dirname -- "$( readlink -f -- "$0"; )"; )/calculateRouteNow.py" > mycron
+    echo "00,10,20,30,40,50 4-6,14-16 * * 1-5 python3 $( dirname -- "$( readlink -f -- "$0"; )"; )/calculateRouteNow.py > /tmp/cronlog 2>&1" > mycron
     #install new cron file
     crontab mycron
     rm mycron
@@ -22,7 +22,8 @@ if ! command -v crontab &> /dev/null; then
 else
     echo "crontab is already installed. Only pushing new cron job"
     #echo new cron into cron file
-    echo "00,10,20,30,40,50 6-8,16-18 * * 1-5 python3 $( dirname -- "$( readlink -f -- "$0"; )"; )/calculateRouteNow.py" > mycron
+    #UTC TIME IMPLIES -2
+    echo "00,10,20,30,40,50 4-6,14-16 * * 1-5 python3 $( dirname -- "$( readlink -f -- "$0"; )"; )/calculateRouteNow.py > /tmp/cronlog 2>&1" > mycron
     #install new cron file
     crontab mycron
     rm mycron
