@@ -52,4 +52,4 @@ else
 fi
 
 echo "Installing requirements"
-pip install -r $( dirname -- "$( readlink -f -- "$0"; )"; )/requirements.txt
+pip3 install -r $( dirname -- "$( readlink -f -- "$0"; )"; )/requirements.txt
