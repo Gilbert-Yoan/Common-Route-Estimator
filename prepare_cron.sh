@@ -32,3 +32,24 @@ else
 
     echo "crontab installed and cron service started."
 fi
+
+echo "--Now preparing python env..."
+
+# Check for Python 3
+if command -v python3 &> /dev/null; then
+    echo "Python 3 is already installed: $(python3 --version)"
+else
+    echo "Python 3 is not installed."
+    sudo yum install -y python3
+fi
+
+# Check for pip3
+if command -v pip3 &> /dev/null; then
+    echo "pip3 is already installed: $(pip3 --version)"
+else
+    echo "pip3 is not installed. Attempting to install..."
+    sudo yum install -y python3-pip
+fi
+
+echo "Installing requirements"
+pip install -r $( dirname -- "$( readlink -f -- "$0"; )"; )/requirements.txt
